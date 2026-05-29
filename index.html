@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cascade Operators Group</title>
+  <meta name="description" content="A three-person partnership formed to acquire, operate, and steward enduring small businesses in the Pacific Northwest.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       Cascade Operators Group — Website Prototype
+       Palette: Mountain Mist
+       Notes: Single-page, gradient-led, ivory base
+       ========================================= */
+
+    :root {
+      /* Ink + neutrals */
+      --ink: #1a2e2d;
+      --ink-soft: #2c3f3e;
+      --ivory: #f5f1e8;
+      --cream: #ede5d3;
+      --paper: #faf7f0;
+
+      /* Teal range */
+      --deep-teal: #1e4d4a;
+      --mid-teal: #4a7c79;
+      --mist: #a8c0c2;
+      --mist-light: #cfdcdd;
+
+      /* Warm accent (driftwood / copper) */
+      --copper: #b8956a;
+      --copper-deep: #8e6b46;
+
+      /* Gradients */
+      --g-sky: linear-gradient(180deg, #173f3d 0%, #2c6663 38%, #6c9491 78%, #a8c0c2 100%);
+      --g-section-ivory: linear-gradient(180deg, #faf7f0 0%, #ede5d3 100%);
+      --g-section-mist: linear-gradient(180deg, #ede5d3 0%, #cfdcdd 100%);
+      --g-divider: linear-gradient(90deg, transparent 0%, var(--mist) 50%, transparent 100%);
+      --g-button: linear-gradient(135deg, #1e4d4a 0%, #2c6663 60%, #4a7c79 100%);
+      --g-button-hover: linear-gradient(135deg, #4a7c79 0%, #2c6663 50%, #1e4d4a 100%);
+      --g-accent-line: linear-gradient(90deg, var(--deep-teal) 0%, var(--copper) 100%);
+      --g-card: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(245,241,232,0.92) 100%);
+
+      /* Typography */
+      --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      /* Scale */
+      --container: 1100px;
+      --container-narrow: 780px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---------- Nav ---------- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(23, 63, 61, 0.0);
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(250, 247, 240, 0.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      padding: 12px 32px;
+      box-shadow: 0 1px 0 rgba(26, 46, 45, 0.06);
+    }
+    /* When the nav is over a dark section (bottom of contact + footer),
+       switch to a translucent dark backdrop with ivory text. */
+    .nav.scrolled.on-dark {
+      background: rgba(23, 63, 61, 0.78);
+      box-shadow: 0 1px 0 rgba(245, 241, 232, 0.08);
+    }
+    .nav.scrolled.on-dark .nav-wordmark { color: var(--ivory); }
+    .nav.scrolled.on-dark .nav-link { color: rgba(245, 241, 232, 0.92); }
+    .nav-wordmark {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 2.5px;
+      color: var(--ivory);
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+    .nav.scrolled .nav-wordmark { color: var(--deep-teal); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-link {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-decoration: none;
+      color: var(--ivory);
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav.scrolled .nav-link { color: var(--ink-soft); }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--g-accent-line);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--g-sky);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      color: var(--ivory);
+    }
+
+    /* Atmospheric fog band */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 40% at 50% 80%, rgba(245, 241, 232, 0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 20% 60%, rgba(255, 255, 255, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 30% at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* SVG mountain silhouettes positioned at the bottom of hero */
+    .hero-mountains {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 50%;
+      pointer-events: none;
+    }
+    .hero-mountains svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--container-narrow);
+      margin: 0 auto;
+    }
+    .hero-wordmark {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: clamp(4px, 0.8vw, 10px);
+      text-transform: uppercase;
+      margin: 0 0 18px;
+      color: var(--ivory);
+      text-shadow: 0 2px 24px rgba(23, 63, 61, 0.35);
+    }
+    .hero-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(15px, 1.8vw, 19px);
+      letter-spacing: 3px;
+      color: var(--mist-light);
+      margin: 0 0 36px;
+    }
+    .hero-tagline span { margin: 0 6px; opacity: 0.6; }
+    .hero-mission {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.7;
+      color: rgba(245, 241, 232, 0.92);
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--mist-light);
+      opacity: 0.7;
+      text-decoration: none;
+      animation: bob 3s ease-in-out infinite;
+    }
+    .scroll-cue::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(180deg, var(--mist-light), transparent);
+      margin: 12px auto 0;
+    }
+    @keyframes bob {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 6px); }
+    }
+
+    /* ---------- Section base ---------- */
+    section {
+      padding: 110px 24px;
+      position: relative;
+    }
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+    }
+    .container-narrow {
+      max-width: var(--container-narrow);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--copper-deep);
+      margin: 0 0 18px;
+      display: inline-block;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--copper);
+      vertical-align: middle;
+      margin-right: 14px;
+    }
+    .section-heading {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.2;
+      letter-spacing: 0.5px;
+      color: var(--ink);
+      margin: 0 0 28px;
+    }
+    .section-heading em {
+      font-style: italic;
+      color: var(--mid-teal);
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      background: var(--g-section-ivory);
+    }
+    .about p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin: 0 0 22px;
+    }
+    .about p:last-child { margin-bottom: 0; }
+
+    /* Divider */
+    .divider-ornate {
+      height: 1px;
+      background: var(--g-divider);
+      margin: 0;
+      border: 0;
+    }
+
+    /* ---------- Team ---------- */
+    .team {
+      background: var(--g-section-ivory);
+      padding-top: 30px;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 36px;
+      margin-top: 56px;
+    }
+    .partner-card {
+      background: var(--g-card);
+      border-radius: 6px;
+      padding: 28px 26px 30px;
+      box-shadow:
+        0 1px 0 rgba(168, 192, 194, 0.4),
+        0 18px 40px -22px rgba(30, 77, 74, 0.22);
+      border: 1px solid rgba(168, 192, 194, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .partner-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 1px 0 rgba(168, 192, 194, 0.5),
+        0 28px 50px -22px rgba(30, 77, 74, 0.28);
+    }
+    .partner-photo-wrap {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--mist-light);
+      margin-bottom: 22px;
+      position: relative;
+    }
+    .partner-photo-wrap::after {
+      /* subtle gradient wash on photo bottom for cohesion */
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 30%;
+      background: linear-gradient(180deg, transparent 0%, rgba(30, 77, 74, 0.12) 100%);
+      pointer-events: none;
+    }
+    .partner-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .partner-name {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.3px;
+      color: var(--ink);
+      margin: 0 0 4px;
+    }
+    .partner-role {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--copper-deep);
+      margin: 0 0 18px;
+    }
+    .partner-bio p {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin: 0 0 12px;
+    }
+    .partner-bio p:last-child { margin-bottom: 0; }
+
+    /* ---------- Criteria ---------- */
+    .criteria {
+      background: var(--g-section-mist);
+      padding-bottom: 130px;
+    }
+    .criteria-intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      margin: 0 0 50px;
+    }
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .criterion {
+      padding: 30px 30px 32px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(245,241,232,0.75) 100%);
+      border-radius: 6px;
+      border-left: 3px solid;
+      border-image: var(--g-accent-line) 1;
+      box-shadow: 0 12px 30px -18px rgba(30, 77, 74, 0.2);
+    }
+    .criterion-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--copper-deep);
+      margin: 0 0 10px;
+    }
+    .criterion-value {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 1.4;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .criterion-detail {
+      font-family: var(--font-sans);
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      background: linear-gradient(180deg, #cfdcdd 0%, #2c6663 100%);
+      color: var(--ivory);
+      padding: 130px 24px 90px;
+    }
+    .contact .section-label { color: var(--ivory); opacity: 0.85; }
+    .contact .section-label::before { background: var(--copper); }
+    .contact .section-heading { color: var(--ivory); }
+    .contact .section-heading em { color: var(--mist-light); }
+    .contact-intro {
+      font-size: 17px;
+      line-height: 1.8;
+      color: rgba(245, 241, 232, 0.92);
+      margin: 0 0 48px;
+      max-width: 580px;
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* Form */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--mist-light);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--ivory);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(245, 241, 232, 0.25);
+      border-radius: 4px;
+      padding: 12px 14px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(245, 241, 232, 0.5);
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--copper);
+      background: rgba(255, 255, 255, 0.14);
+    }
+    .field textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .field select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23cfdcdd' d='M6 8L0 0h12z'/></svg>");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+    }
+    .field select option { color: var(--ink); background: var(--ivory); }
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .submit-btn {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--ivory);
+      background: var(--g-button);
+      border: 1px solid rgba(245, 241, 232, 0.2);
+      border-radius: 4px;
+      padding: 16px 28px;
+      cursor: pointer;
+      margin-top: 8px;
+      align-self: flex-start;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+      box-shadow: 0 8px 24px -8px rgba(23, 63, 61, 0.6);
+    }
+    .submit-btn:hover {
+      background: var(--g-button-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px -10px rgba(23, 63, 61, 0.7);
+    }
+
+    .form-thanks {
+      display: none;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      border-left: 3px solid var(--copper);
+      border-radius: 4px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ivory);
+    }
+    .form-thanks.visible { display: block; }
+    .contact-form.hidden { display: none; }
+
+    /* Direct contact card */
+    .direct-card {
+      background: rgba(23, 63, 61, 0.28);
+      border: 1px solid rgba(245, 241, 232, 0.32);
+      border-radius: 6px;
+      padding: 32px 30px;
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      box-shadow: 0 18px 50px -20px rgba(0,0,0,0.35);
+    }
+    .direct-card h3 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 22px;
+      margin: 0 0 6px;
+      color: var(--ivory);
+    }
+    .direct-card .role {
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin: 0 0 22px;
+    }
+    .direct-card a {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      color: var(--ivory);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+    }
+    .direct-card a:hover { color: var(--copper); }
+    .direct-card .label-tiny {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mist-light);
+      opacity: 0.75;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .direct-card .note {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 14px;
+      color: rgba(245, 241, 232, 0.78);
+      margin-top: 22px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(245, 241, 232, 0.18);
+      line-height: 1.55;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--ink);
+      color: rgba(245, 241, 232, 0.75);
+      padding: 40px 24px;
+      text-align: center;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 0.4px;
+    }
+    footer .foot-wordmark {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ivory);
+      margin-bottom: 6px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .nav {
+        padding: 14px 20px;
+        justify-content: center;
+      }
+      .nav.scrolled { padding: 10px 20px; }
+      .nav-wordmark { display: none; }
+      .nav-links { gap: 22px; }
+      .nav-link { font-size: 12px; letter-spacing: 1.2px; }
+      section { padding: 80px 22px; }
+      .team-grid { grid-template-columns: 1fr; gap: 26px; }
+      .criteria-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .row-2 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .hero { padding: 100px 18px 70px; }
+      .hero-wordmark { letter-spacing: 3px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="nav-wordmark">Cascade Operators Group</div>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#team" class="nav-link">Team</a>
+      <a href="#criteria" class="nav-link">Criteria</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero" id="top">
+    <div class="hero-mountains" aria-hidden="true">
+      <svg viewBox="0 0 1440 400" preserveAspectRatio="none">
+        <!-- Back range (most distant, lightest, soft rolling) -->
+        <path d="M-40,280
+                 C 120,220 240,250 380,210
+                 C 520,170 640,230 760,200
+                 C 900,160 1040,220 1180,195
+                 C 1300,180 1400,210 1480,200
+                 L 1480,420 L -40,420 Z"
+              fill="rgba(108, 148, 145, 0.55)"/>
+        <!-- Mid range (medium, more character) -->
+        <path d="M-40,320
+                 C 80,260 220,290 340,250
+                 C 460,300 580,260 700,290
+                 C 820,250 960,300 1080,270
+                 C 1220,300 1340,260 1480,285
+                 L 1480,420 L -40,420 Z"
+              fill="rgba(44, 102, 99, 0.78)"/>
+        <!-- Front range (closest, darkest, deeper peaks) -->
+        <path d="M-40,365
+                 C 60,310 180,355 300,320
+                 C 400,360 500,335 620,355
+                 C 720,330 820,365 940,335
+                 C 1040,365 1160,335 1280,358
+                 C 1380,340 1440,355 1480,350
+                 L 1480,420 L -40,420 Z"
+              fill="rgba(23, 63, 61, 0.94)"/>
+      </svg>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-wordmark">Cascade Operators Group</h1>
+      <p class="hero-tagline">Discretion<span>·</span>Discipline<span>·</span>Care</p>
+      <p class="hero-mission">
+        Operators, financial leaders, and capital &mdash; assembled to acquire and run a Pacific Northwest business as principals, not a fund.
+      </p>
+    </div>
+
+    <a href="#about" class="scroll-cue">Read more</a>
+  </header>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
+    <div class="container-narrow">
+      <span class="section-label">About</span>
+      <h2 class="section-heading">We invest the way we operate &mdash; directly.</h2>
+      <p>Cascade Operators Group is a three-person partnership &mdash; an operator, an investor, and a chief financial officer &mdash; bringing the experience of much larger firms to a single, hands-on acquisition in the Pacific Northwest.</p>
+      <p>We are principals, not a fund. We invest our own capital, take operational responsibility for what we buy, and intend to hold and improve it for the long term.</p>
+      <p>Our goal is not simply to buy a company. It is to carry forward what has already been built &mdash; with fresh energy, modern systems, and the steady attention of owners who plan to be there.</p>
+    </div>
+  </section>
+
+  <hr class="divider-ornate">
+
+  <!-- ========== TEAM ========== -->
+  <section class="team" id="team">
+    <div class="container">
+      <span class="section-label">The partnership</span>
+      <h2 class="section-heading">Operating, finance, and capital under one roof.</h2>
+
+      <div class="team-grid">
+
+        <article class="partner-card">
+          <div class="partner-photo-wrap">
+            <img class="partner-photo" src="assets/ben-cassiday-headshot.jpg" alt="Benjamin Cassiday">
+          </div>
+          <h3 class="partner-name">Benjamin Cassiday</h3>
+          <p class="partner-role">Operator</p>
+          <div class="partner-bio">
+            <p>Ben has spent more than a decade running day-to-day operations across consumer goods, healthcare services, and technology-driven businesses. As a co-founder and operator, he helped scale one company from startup to $13M in annual revenue within 24 months, building manufacturing, customer service, market education, and distributed teams across the United States and the Philippines.</p>
+            <p>He specializes in the thoughtful use of technology, expanded marketing, and modernized operating practices that help mature businesses improve without losing what made them successful.</p>
+          </div>
+        </article>
+
+        <article class="partner-card">
+          <div class="partner-photo-wrap">
+            <img class="partner-photo" src="assets/moshe-shemian-headshot.jpg" alt="Morris &ldquo;Moshe&rdquo; Shemian">
+          </div>
+          <h3 class="partner-name">Morris &ldquo;Moshe&rdquo; Shemian</h3>
+          <p class="partner-role">Commercial Transactions</p>
+          <div class="partner-bio">
+            <p>Moshe is the principal of Cannon Investment Group, with deep real estate investment experience and a long track record as a serial accredited investor. Trained as a mechanical engineer, he has built and sold operating businesses across industries, including the import and distribution of nearly $2 billion in consumer electronics through major U.S. retailers.</p>
+            <p>He brings deal-making experience, capital, and an investor&rsquo;s eye for opportunity, structure, and long-term value creation.</p>
+          </div>
+        </article>
+
+        <article class="partner-card">
+          <div class="partner-photo-wrap">
+            <img class="partner-photo" src="assets/hank-hague-headshot.jpeg" alt="Hank Hague">
+          </div>
+          <h3 class="partner-name">Hank Hague</h3>
+          <p class="partner-role">Chief Financial Officer</p>
+          <div class="partner-bio">
+            <p>Hank is a career CFO whose work spans public, private, and PE-backed companies, with a track record of guiding entrepreneurial businesses through growth, restructuring, and liquidity events. He has held CFO and senior finance leadership roles across pharmaceuticals, medical devices, contract manufacturing, and consumer products.</p>
+            <p>He brings the financial discipline, valuation rigor, and post-close stewardship needed to turn a sound acquisition into a durable operating business.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider-ornate">
+
+  <!-- ========== CRITERIA ========== -->
+  <section class="criteria" id="criteria">
+    <div class="container">
+      <span class="section-label">What we look for</span>
+      <h2 class="section-heading">A clear profile, deliberately drawn.</h2>
+      <p class="criteria-intro">
+        Our criteria are tight because our intention is clear. The profile below is meant to make it easy for owners, brokers, and advisors to recognize when we are the right call &mdash; and when we are not.
+      </p>
+
+      <div class="criteria-grid">
+        <div class="criterion">
+          <p class="criterion-label">Geography</p>
+          <p class="criterion-value">Pacific Northwest</p>
+          <p class="criterion-detail">Within roughly 50 miles of Portland, Oregon or Sequim, Washington.</p>
+        </div>
+
+        <div class="criterion">
+          <p class="criterion-label">Situation</p>
+          <p class="criterion-value">Owner-led transitions</p>
+          <p class="criterion-detail">Retirement, succession planning, or estates where the next steward has not yet been identified.</p>
+        </div>
+
+        <div class="criterion">
+          <p class="criterion-label">Industries</p>
+          <p class="criterion-value">Service, manufacturing, distribution, retirement services</p>
+          <p class="criterion-detail">Established operations with durable customer relationships. Not retail. Not franchises.</p>
+        </div>
+
+        <div class="criterion">
+          <p class="criterion-label">Posture</p>
+          <p class="criterion-value">Principals, not a fund</p>
+          <p class="criterion-detail">We invest our own capital, take operational responsibility, and intend to hold and run what we buy for the long term.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <span class="section-label">Get in touch</span>
+      <h2 class="section-heading">If a situation comes to mind, <em>we would value the introduction</em>.</h2>
+      <p class="contact-intro">
+        Whether you are an owner considering a transition, a broker with a fitting listing, or an advisor whose client may benefit from a serious local buyer &mdash; please reach out.
+      </p>
+
+      <div class="contact-layout">
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="row-2">
+            <div class="field">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" required>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="f-firm">Firm or affiliation <span style="text-transform:none;letter-spacing:0;opacity:0.6;">(optional)</span></label>
+              <input id="f-firm" name="firm" type="text">
+            </div>
+            <div class="field">
+              <label for="f-role">You are a&hellip;</label>
+              <select id="f-role" name="role">
+                <option value="Business owner">Business owner</option>
+                <option value="Broker / intermediary">Broker / intermediary</option>
+                <option value="Attorney">Attorney</option>
+                <option value="CPA / financial advisor">CPA / financial advisor</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" placeholder="A few sentences is plenty." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send introduction</button>
+        </form>
+
+        <div class="form-thanks" id="form-thanks">
+          Thank you &mdash; your mail client should have opened with your message ready to send. If it did not, please write directly to <a href="mailto:bencassiday@gmail.com" style="color:var(--copper);">bencassiday@gmail.com</a>.
+        </div>
+
+        <aside class="direct-card">
+          <span class="label-tiny">Direct line</span>
+          <h3>Benjamin Cassiday</h3>
+
+          <span class="label-tiny" style="margin-top:18px;">Email</span>
+          <a href="mailto:bencassiday@gmail.com">bencassiday@gmail.com</a>
+
+          <span class="label-tiny" style="margin-top:14px;">Phone</span>
+          <a href="tel:+19713525999">(971) 352-5999</a>
+
+          <p class="note">Direct outreach reaches Ben first; conversations involving Moshe and Hank are arranged from there.</p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-wordmark">Cascade Operators Group</div>
+    <div>Portland, Oregon &middot; Sequim, Washington</div>
+  </footer>
+
+  <script>
+    // ---- Sticky nav state ----
+    // Two transitions happen on scroll:
+    //   1) "scrolled" — when the user has left the dark hero, the nav gains
+    //      a frosted ivory backdrop with dark teal text.
+    //   2) "on-dark" — when the user has reached the dark bottom of the
+    //      contact section and the footer, the nav switches to a translucent
+    //      dark backdrop with ivory text so it stays legible.
+    //
+    // Thresholds are derived from element positions so they stay correct on
+    // resize and font-load reflows.
+    const nav = document.getElementById('nav');
+    let scrolledThreshold = 200;
+    let onDarkThreshold = Infinity;
+
+    const computeThresholds = () => {
+      const about = document.getElementById('about');
+      const footer = document.querySelector('footer');
+      // Trigger "scrolled" once the user is ~60% of the way through the hero.
+      scrolledThreshold = Math.max(120, about ? about.offsetTop - 280 : 200);
+      // Trigger "on-dark" when the lower half of the contact section
+      // (where the gradient deepens into teal) reaches the top of the viewport.
+      onDarkThreshold = footer ? footer.offsetTop - 320 : Infinity;
+    };
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > scrolledThreshold);
+      nav.classList.toggle('on-dark',  y > onDarkThreshold);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', () => { computeThresholds(); onScroll(); });
+    window.addEventListener('load',   () => { computeThresholds(); onScroll(); });
+    computeThresholds();
+    onScroll();
+
+    // ---- Contact form: mailto: handoff for the local prototype ----
+    // On submit, build a mailto: link with the form fields encoded in
+    // the subject and body, then open the user's default mail client.
+    // (When deployed, this will be swapped for a real API endpoint.)
+    const form = document.getElementById('contact-form');
+    const thanks = document.getElementById('form-thanks');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const firm = form.firm.value.trim();
+      const role = form.role.value;
+      const message = form.message.value.trim();
+
+      if (!name || !email || !message) {
+        // Minimal validation; browsers also enforce `required`.
+        return;
+      }
+
+      const subject = `Website inquiry — ${name}${firm ? ' (' + firm + ')' : ''}`;
+      const bodyLines = [
+        `From: ${name}`,
+        `Email: ${email}`,
+        firm ? `Firm/affiliation: ${firm}` : null,
+        `Role: ${role}`,
+        '',
+        '---',
+        '',
+        message,
+        '',
+        '---',
+        'Submitted via cascadeoperatorsgroup.com'
+      ].filter(Boolean);
+
+      const mailto =
+        'mailto:bencassiday@gmail.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(bodyLines.join('\n'));
+
+      // Open mail client
+      window.location.href = mailto;
+
+      // Swap the form for a thank-you panel
+      form.classList.add('hidden');
+      thanks.classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
