@@ -406,6 +406,9 @@
       border-image: var(--g-accent-line) 1;
       box-shadow: 0 12px 30px -18px rgba(30, 77, 74, 0.2);
     }
+    .criterion--wide {
+      grid-column: 1 / -1;
+    }
     .criterion-label {
       font-family: var(--font-sans);
       font-size: 11px;
@@ -769,10 +772,10 @@
   <!-- ========== CRITERIA ========== -->
   <section class="criteria" id="criteria">
     <div class="container">
-      <span class="section-label">What we look for</span>
-      <h2 class="section-heading">Specific <em>by design</em>.</h2>
+      <span class="section-label">Our criteria</span>
+      <h2 class="section-heading">An established Pacific Northwest business, <em>owner-led</em>.</h2>
       <p class="criteria-intro">
-        We&rsquo;re looking for an established Pacific Northwest business in an owner-led transition. The four points below define exactly what we want &mdash; enough for any owner, broker, or advisor to tell at a glance whether we&rsquo;re the right call.
+        The points below define exactly what we want &mdash; enough for any owner, broker, or advisor to tell at a glance whether we&rsquo;re the right call.
       </p>
 
       <div class="criteria-grid">
@@ -795,6 +798,12 @@
         </div>
 
         <div class="criterion">
+          <p class="criterion-label">Size</p>
+          <p class="criterion-value">Minimum $400K SDE</p>
+          <p class="criterion-detail">Seller&rsquo;s discretionary income of at least $400,000 &mdash; a floor that supports the business and leaves room to reinvest and grow.</p>
+        </div>
+
+        <div class="criterion criterion--wide">
           <p class="criterion-label">Posture</p>
           <p class="criterion-value">Principals, not a fund</p>
           <p class="criterion-detail">We invest our own capital, take operational responsibility, and intend to hold and run what we buy for the long term.</p>
