@@ -3,8 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cascade Operators Group</title>
-  <meta name="description" content="A three-person partnership formed to acquire, operate, and steward enduring small businesses in the Pacific Northwest.">
+  <title>Cascade Operators Group &mdash; Pacific Northwest Business Acquisition</title>
+  <meta name="description" content="An experienced team of operators and financial leaders acquiring and operating an established business in the Pacific Northwest. Principals, not a fund.">
+  <link rel="canonical" href="https://thewoodswideweb.github.io/cascade-operators-group-site/">
+
+  <!-- Open Graph / Twitter (swap URLs to cascadeoperatorsgroup.com once the domain is pointed) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cascade Operators Group">
+  <meta property="og:title" content="Cascade Operators Group — Pacific Northwest Business Acquisition">
+  <meta property="og:description" content="An experienced team of operators and financial leaders acquiring and operating an established business in the Pacific Northwest. Principals, not a fund.">
+  <meta property="og:url" content="https://thewoodswideweb.github.io/cascade-operators-group-site/">
+  <meta property="og:image" content="https://thewoodswideweb.github.io/cascade-operators-group-site/assets/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cascade Operators Group — Pacific Northwest Business Acquisition">
+  <meta name="twitter:description" content="An experienced team of operators and financial leaders acquiring and operating an established business in the Pacific Northwest.">
+  <meta name="twitter:image" content="https://thewoodswideweb.github.io/cascade-operators-group-site/assets/og-card.png">
+
+  <!-- Favicon (brand mark) -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Cascade Operators Group LLC",
+    "url": "https://thewoodswideweb.github.io/cascade-operators-group-site/",
+    "logo": "https://thewoodswideweb.github.io/cascade-operators-group-site/assets/brand-mark.svg",
+    "description": "An experienced team of operators and financial leaders acquiring and operating an established business in the Pacific Northwest.",
+    "foundingDate": "2026",
+    "email": "info@cascadeoperatorsgroup.com",
+    "areaServed": "Pacific Northwest, United States",
+    "founder": [
+      { "@type": "Person", "name": "Benjamin Cassiday" },
+      { "@type": "Person", "name": "Morris \"Moshe\" Shemian" },
+      { "@type": "Person", "name": "Hank Hague" }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,12 +136,28 @@
     }
     .nav.scrolled.on-dark .nav-wordmark { color: var(--ivory); }
     .nav.scrolled.on-dark .nav-link { color: rgba(245, 241, 232, 0.92); }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--ivory);
+      transition: color 0.3s ease;
+    }
+    .nav-seal {
+      width: 26px;
+      height: 26px;
+      flex: none;
+      transition: color 0.3s ease;
+    }
+    .nav.scrolled .nav-brand { color: var(--deep-teal); }
+    .nav.scrolled.on-dark .nav-brand { color: var(--ivory); }
     .nav-wordmark {
       font-family: var(--font-serif);
       font-weight: 600;
       font-size: 18px;
       letter-spacing: 2.5px;
-      color: var(--ivory);
+      color: inherit;
       text-transform: uppercase;
       transition: color 0.3s ease;
     }
@@ -184,25 +238,23 @@
       max-width: var(--container-narrow);
       margin: 0 auto;
     }
+    .hero-seal {
+      display: block;
+      width: clamp(58px, 7vw, 76px);
+      height: auto;
+      margin: 0 auto 26px;
+      filter: drop-shadow(0 2px 16px rgba(23, 63, 61, 0.4));
+    }
     .hero-wordmark {
       font-family: var(--font-serif);
       font-weight: 500;
       font-size: clamp(36px, 6vw, 64px);
       letter-spacing: clamp(4px, 0.8vw, 10px);
       text-transform: uppercase;
-      margin: 0 0 18px;
+      margin: 0 0 30px;
       color: var(--ivory);
       text-shadow: 0 2px 24px rgba(23, 63, 61, 0.35);
     }
-    .hero-tagline {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(15px, 1.8vw, 19px);
-      letter-spacing: 3px;
-      color: var(--mist-light);
-      margin: 0 0 36px;
-    }
-    .hero-tagline span { margin: 0 6px; opacity: 0.6; }
     .hero-mission {
       font-family: var(--font-sans);
       font-weight: 300;
@@ -211,6 +263,26 @@
       color: rgba(245, 241, 232, 0.92);
       max-width: 640px;
       margin: 0 auto 48px;
+    }
+    .hero-proof {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      color: var(--mist-light);
+      margin: 0 auto;
+    }
+    .hero-proof::before,
+    .hero-proof::after {
+      content: '';
+      width: 26px;
+      height: 1px;
+      background: var(--copper);
+      opacity: 0.75;
     }
     .scroll-cue {
       position: absolute;
@@ -358,14 +430,40 @@
       object-position: center 20%;
       display: block;
     }
+    .partner-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 4px;
+    }
     .partner-name {
       font-family: var(--font-serif);
       font-weight: 600;
       font-size: 22px;
       letter-spacing: 0.3px;
       color: var(--ink);
-      margin: 0 0 4px;
+      margin: 0;
     }
+    .partner-link {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      color: var(--mid-teal);
+      border: 1px solid rgba(74, 124, 121, 0.35);
+      transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+    .partner-link:hover {
+      color: #fff;
+      background: var(--deep-teal);
+      border-color: var(--deep-teal);
+      transform: translateY(-1px);
+    }
+    .partner-link svg { width: 16px; height: 16px; display: block; }
     .partner-role {
       font-family: var(--font-sans);
       font-size: 11px;
@@ -628,12 +726,39 @@
       color: var(--ivory);
       margin-bottom: 6px;
     }
+    footer .foot-legal {
+      margin-top: 12px;
+      font-size: 11.5px;
+      letter-spacing: 0.5px;
+      color: rgba(245, 241, 232, 0.45);
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+                  transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 860px) {
       .nav {
         padding: 14px 20px;
         justify-content: center;
+        gap: 20px;
       }
       .nav.scrolled { padding: 10px 20px; }
       .nav-wordmark { display: none; }
@@ -654,7 +779,14 @@
 <body>
 
   <nav class="nav" id="nav">
-    <div class="nav-wordmark">Cascade Operators Group</div>
+    <a href="#top" class="nav-brand" aria-label="Cascade Operators Group — top">
+      <svg class="nav-seal" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" stroke="currentColor" stroke-width="3"/>
+        <path d="M18 38 L29 24 L36 33 L41 27 L48 38 Z" fill="currentColor"/>
+        <path d="M20 43 H44" stroke="#b8956a" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <span class="nav-wordmark">Cascade Operators Group</span>
+    </a>
     <div class="nav-links">
       <a href="#about" class="nav-link">About</a>
       <a href="#team" class="nav-link">Team</a>
@@ -696,11 +828,16 @@
     </div>
 
     <div class="hero-content">
+      <svg class="hero-seal" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" stroke="#f5f1e8" stroke-width="2.4"/>
+        <path d="M18 38 L29 24 L36 33 L41 27 L48 38 Z" fill="#f5f1e8"/>
+        <path d="M20 43 H44" stroke="#b8956a" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
       <h1 class="hero-wordmark">Cascade Operators Group</h1>
-      <p class="hero-tagline">Discretion<span>·</span>Discipline<span>·</span>Care</p>
       <p class="hero-mission">
         An experienced team of operators and financial leaders, looking to acquire and operate an established business in the Pacific Northwest.
       </p>
+      <p class="hero-proof">Liquid capital, committed and ready to deploy</p>
     </div>
 
     <a href="#about" class="scroll-cue">Read more</a>
@@ -712,7 +849,7 @@
       <span class="section-label">About</span>
       <h2 class="section-heading">We invest the way we operate &mdash; directly.</h2>
       <p>Cascade Operators Group is a three-person partnership &mdash; an operator, an investor, and a chief financial officer &mdash; bringing the experience of much larger firms to a single, hands-on acquisition in the Pacific Northwest.</p>
-      <p>We are principals, not a fund. We invest our own capital, take operational responsibility for what we buy, and intend to hold and improve it for the long term.</p>
+      <p>What unites us is a simple stance: the people making the decisions should be the people who live with them. We acquire with our own capital and stay on to run what we buy &mdash; for the long term.</p>
       <p>Our goal is not simply to buy a company. It is to carry forward what has already been built &mdash; with fresh energy, modern systems, and the steady attention of owners who plan to be there.</p>
     </div>
   </section>
@@ -731,7 +868,12 @@
           <div class="partner-photo-wrap">
             <img class="partner-photo" src="assets/ben-cassiday-headshot.jpg" alt="Benjamin Cassiday">
           </div>
-          <h3 class="partner-name">Benjamin Cassiday</h3>
+          <div class="partner-head">
+            <h3 class="partner-name">Benjamin Cassiday</h3>
+            <a class="partner-link" href="https://www.linkedin.com/in/benjamincassiday/" target="_blank" rel="noopener noreferrer" aria-label="Benjamin Cassiday on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </div>
           <p class="partner-role">Operations Expertise</p>
           <div class="partner-bio">
             <p>Ben has spent more than a decade running day-to-day operations across consumer goods, healthcare services, and technology-driven businesses. As a co-founder and operator, he helped scale one company from startup to $13M in annual revenue within 24 months, building manufacturing, customer service, market education, and distributed teams across the United States and the Philippines.</p>
@@ -755,7 +897,12 @@
           <div class="partner-photo-wrap">
             <img class="partner-photo" src="assets/hank-hague-headshot.jpeg" alt="Hank Hague">
           </div>
-          <h3 class="partner-name">Hank Hague</h3>
+          <div class="partner-head">
+            <h3 class="partner-name">Hank Hague</h3>
+            <a class="partner-link" href="https://www.linkedin.com/in/hank-hague-cfo/" target="_blank" rel="noopener noreferrer" aria-label="Hank Hague on LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+          </div>
           <p class="partner-role">Financial Expertise</p>
           <div class="partner-bio">
             <p>Hank is a career CFO whose work spans public, private, and PE-backed companies, with a track record of guiding entrepreneurial businesses through growth, restructuring, and liquidity events. He has held CFO and senior finance leadership roles across pharmaceuticals, medical devices, contract manufacturing, and consumer products.</p>
@@ -861,7 +1008,7 @@
         </form>
 
         <div class="form-thanks" id="form-thanks">
-          Thank you &mdash; your mail client should have opened with your message ready to send. If it did not, please write directly to <a href="mailto:bencassiday@gmail.com" style="color:var(--copper);">bencassiday@gmail.com</a>.
+          Thank you &mdash; your mail client should have opened with your message ready to send. If it did not, please write directly to <a href="mailto:info@cascadeoperatorsgroup.com" style="color:var(--copper);">info@cascadeoperatorsgroup.com</a>.
         </div>
 
         <aside class="direct-card">
@@ -869,7 +1016,7 @@
           <h3>Benjamin Cassiday</h3>
 
           <span class="label-tiny" style="margin-top:18px;">Email</span>
-          <a href="mailto:bencassiday@gmail.com">bencassiday@gmail.com</a>
+          <a href="mailto:ben@cascadeoperatorsgroup.com">Ben@CascadeOperatorsGroup.com</a>
 
           <span class="label-tiny" style="margin-top:14px;">Phone</span>
           <a href="tel:+19713525999">(971) 352-5999</a>
@@ -884,6 +1031,7 @@
   <footer>
     <div class="foot-wordmark">Cascade Operators Group</div>
     <div>Portland, Oregon &middot; Sequim, Washington</div>
+    <div class="foot-legal">&copy; 2026 Cascade Operators Group LLC</div>
   </footer>
 
   <script>
@@ -923,6 +1071,51 @@
     computeThresholds();
     onScroll();
 
+    // ---- Reveal on scroll ----
+    // Elements fade + rise as they enter the viewport. The `reveal` class is
+    // added in JS (not the HTML) so the page degrades gracefully if scripting
+    // is off, and prefers-reduced-motion is honored via CSS. A scroll handler
+    // (rAF-throttled) drives the reveal so content can never get stranded
+    // hidden, even if the page is scrolled programmatically.
+    (() => {
+      const selectors = [
+        '.about .container-narrow > *',
+        '.team .section-label', '.team .section-heading', '.partner-card',
+        '.criteria .section-label', '.criteria .section-heading', '.criteria-intro', '.criterion',
+        '.contact .section-label', '.contact .section-heading', '.contact-intro',
+        '.contact-form', '.direct-card'
+      ];
+      const els = Array.from(document.querySelectorAll(selectors.join(',')));
+      els.forEach(el => el.classList.add('reveal'));
+
+      // Stagger the card grids so they cascade in rather than snap together.
+      document.querySelectorAll('.team-grid, .criteria-grid').forEach(grid => {
+        Array.from(grid.children).forEach((child, i) => {
+          child.style.transitionDelay = (i * 70) + 'ms';
+        });
+      });
+
+      let remaining = els.slice();
+      const reveal = () => {
+        const trigger = window.innerHeight * 0.88;
+        remaining = remaining.filter(el => {
+          if (el.getBoundingClientRect().top < trigger) {
+            el.classList.add('in');
+            return false;
+          }
+          return true;
+        });
+        if (remaining.length === 0) {
+          window.removeEventListener('scroll', reveal);
+          window.removeEventListener('resize', reveal);
+        }
+      };
+      window.addEventListener('scroll', reveal, { passive: true });
+      window.addEventListener('resize', reveal, { passive: true });
+      window.addEventListener('load', reveal);
+      reveal();
+    })();
+
     // ---- Contact form: mailto: handoff for the local prototype ----
     // On submit, build a mailto: link with the form fields encoded in
     // the subject and body, then open the user's default mail client.
@@ -960,7 +1153,7 @@
       ].filter(Boolean);
 
       const mailto =
-        'mailto:bencassiday@gmail.com' +
+        'mailto:info@cascadeoperatorsgroup.com' +
         '?subject=' + encodeURIComponent(subject) +
         '&body=' + encodeURIComponent(bodyLines.join('\n'));
 
