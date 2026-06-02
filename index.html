@@ -1057,11 +1057,14 @@
             <textarea id="f-message" name="message" placeholder="A few sentences is plenty." required></textarea>
           </div>
 
+          <!-- Honeypot: hidden from humans, bots fill it and get dropped -->
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important;">
+
           <button type="submit" class="submit-btn">Send introduction</button>
         </form>
 
         <div class="form-thanks" id="form-thanks">
-          Thank you &mdash; your mail client should have opened with your message ready to send. If it did not, please write directly to <a href="mailto:info@cascadeoperatorsgroup.com" style="color:var(--copper);">info@cascadeoperatorsgroup.com</a>.
+          Thank you &mdash; your message has been received. We read every introduction personally and will reply within a day or two. If your matter is time-sensitive, you can also write directly to <a href="mailto:info@cascadeoperatorsgroup.com" style="color:var(--copper);">info@cascadeoperatorsgroup.com</a>.
         </div>
 
         <aside class="direct-card">
@@ -1170,14 +1173,15 @@
       reveal();
     })();
 
-    // ---- Contact form: mailto: handoff for the local prototype ----
-    // On submit, build a mailto: link with the form fields encoded in
-    // the subject and body, then open the user's default mail client.
-    // (When deployed, this will be swapped for a real API endpoint.)
+    // ---- Contact form: Web3Forms submission ----
+    // Posts the form to Web3Forms, which emails it to info@cascadeoperatorsgroup.com.
+    // The access key is a public client-side token by design (not a secret).
+    const WEB3FORMS_KEY = 'af7e0a7c-710b-488b-b90d-6ff746cb400d';
     const form = document.getElementById('contact-form');
     const thanks = document.getElementById('form-thanks');
+    const submitBtn = form.querySelector('.submit-btn');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = form.name.value.trim();
@@ -1186,37 +1190,57 @@
       const role = form.role.value;
       const message = form.message.value.trim();
 
+      // Honeypot: if a bot ticked the hidden box, silently pretend success.
+      if (form.botcheck && form.botcheck.checked) {
+        form.classList.add('hidden');
+        thanks.classList.add('visible');
+        return;
+      }
+
       if (!name || !email || !message) {
         // Minimal validation; browsers also enforce `required`.
         return;
       }
 
-      const subject = `Website inquiry — ${name}${firm ? ' (' + firm + ')' : ''}`;
-      const bodyLines = [
-        `From: ${name}`,
-        `Email: ${email}`,
-        firm ? `Firm/affiliation: ${firm}` : null,
-        `Role: ${role}`,
-        '',
-        '---',
-        '',
-        message,
-        '',
-        '---',
-        'Submitted via cascadeoperatorsgroup.com'
-      ].filter(Boolean);
+      const payload = {
+        access_key: WEB3FORMS_KEY,
+        subject: `Website inquiry — ${name}${firm ? ' (' + firm + ')' : ''}`,
+        from_name: 'Cascade Operators Group — Website',
+        replyto: email,
+        name: name,
+        email: email,
+        firm: firm || '(not provided)',
+        role: role,
+        message: message,
+        botcheck: false
+      };
 
-      const mailto =
-        'mailto:info@cascadeoperatorsgroup.com' +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(bodyLines.join('\n'));
+      const originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
 
-      // Open mail client
-      window.location.href = mailto;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
 
-      // Swap the form for a thank-you panel
-      form.classList.add('hidden');
-      thanks.classList.add('visible');
+        if (data.success) {
+          form.classList.add('hidden');
+          thanks.classList.add('visible');
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+        alert('Sorry — something went wrong sending your message. Please email us directly at info@cascadeoperatorsgroup.com.');
+      }
     });
   </script>
 
