@@ -1037,19 +1037,24 @@
 
           <div class="row-2">
             <div class="field">
+              <label for="f-phone">Phone <span style="text-transform:none;letter-spacing:0;opacity:0.6;">(optional)</span></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel">
+            </div>
+            <div class="field">
               <label for="f-firm">Firm or affiliation <span style="text-transform:none;letter-spacing:0;opacity:0.6;">(optional)</span></label>
               <input id="f-firm" name="firm" type="text">
             </div>
-            <div class="field">
-              <label for="f-role">You are a&hellip;</label>
-              <select id="f-role" name="role">
-                <option value="Business owner">Business owner</option>
-                <option value="Broker / intermediary">Broker / intermediary</option>
-                <option value="Attorney">Attorney</option>
-                <option value="CPA / financial advisor">CPA / financial advisor</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-role">You are a&hellip;</label>
+            <select id="f-role" name="role">
+              <option value="Business owner">Business owner</option>
+              <option value="Broker / intermediary">Broker / intermediary</option>
+              <option value="Attorney">Attorney</option>
+              <option value="CPA / financial advisor">CPA / financial advisor</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
 
           <div class="field">
@@ -1186,6 +1191,7 @@
 
       const name = form.name.value.trim();
       const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
       const firm = form.firm.value.trim();
       const role = form.role.value;
       const message = form.message.value.trim();
@@ -1209,6 +1215,7 @@
         replyto: email,
         name: name,
         email: email,
+        phone: phone || '(not provided)',
         firm: firm || '(not provided)',
         role: role,
         message: message,
