@@ -660,7 +660,7 @@
     .field select,
     .field textarea {
       font-family: var(--font-sans);
-      font-size: 15px;
+      font-size: 16px; /* 16px min prevents iOS Safari zoom-on-focus */
       color: var(--ivory);
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(245, 241, 232, 0.25);
@@ -854,8 +854,31 @@
       .row-2 { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
-      .hero { padding: 100px 18px 70px; }
-      .hero-wordmark { letter-spacing: 3px; }
+      .hero { padding: 96px 18px 64px; }
+      .hero-wordmark { letter-spacing: 2px; }
+
+      /* Nav: anchor the seal left, links right, and tighten so the seal +
+         all five links fit on a ~360px phone (they overflowed before). */
+      .nav { justify-content: space-between; padding: 12px 16px; gap: 10px; }
+      .nav.scrolled { padding: 10px 16px; }
+      .nav-links { gap: 13px; }
+      .nav-link { font-size: 11px; letter-spacing: 0.4px; }
+
+      /* The scroll cue collided with the hero CTA buttons on the shorter
+         mobile hero; the buttons already serve "what next" here. */
+      .scroll-cue { display: none; }
+      .hero-cta { margin-top: 30px; gap: 12px; }
+
+      /* Trim the oversized desktop vertical padding for phones. */
+      section { padding: 64px 20px; }
+      .howwework { padding: 64px 20px 80px; }
+      .contact { padding: 88px 20px 72px; }
+      .criteria-cta { font-size: 18px; }
+    }
+
+    @media (max-width: 360px) {
+      .nav-links { gap: 10px; }
+      .nav-link { font-size: 10.5px; }
     }
   </style>
 </head>
